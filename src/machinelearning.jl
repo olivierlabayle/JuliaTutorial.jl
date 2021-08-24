@@ -72,6 +72,7 @@ stack = Stack(;metalearner=LogisticClassifier(),
 
 ###############################################################################
 # Model Comparison
+# TODO: What does the following code do?
 # Use the push!(array, new_element) function to extend the results for each model
 # Notice the "!", this isyntax tells you that the first argument will be modified by the function
 
