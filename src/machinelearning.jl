@@ -25,7 +25,7 @@ models(matching(X,y))
 # This means we need to install and load the different libraries where the models are implemented.
 # The following is the MLJ facility to load a model but using `using` or `import` will also work of course.
 
-# Enter the Package manager and run: `add MLJLinearModels NearestNeighborModels MLJFlux MLJDecisionTreeInterface Plots StatsPlots`
+# Enter the Package manager and run: `add MLJLinearModels NearestNeighborModels MLJFlux MLJDecisionTreeInterface Plots`
 
 RandomForestClassifier= @load RandomForestClassifier pkg=DecisionTree verbosity = 0
 NeuralNetworkClassifier = @load NeuralNetworkClassifier pkg=MLJFlux verbosity = 0
@@ -37,9 +37,13 @@ KNNClassifier = @load KNNClassifier pkg=NearestNeighborModels verbosity = 0
 
 # Let's look at the API with a simple model fit
 
-mach = machine(LogisticClassifier(), X, y)
+# A model is simply a container for hyperparmeters describing the procedure
+model = LogisticClassifier()
+# The machine wraps a procedure with data
+mach = machine(model, X, y)
+# The estimation part
 fit!(mach)
-fitted_params(mach)
+fp = fitted_params(mach)
 
 # Investigate the following result
 ypred = predict(mach)
@@ -51,7 +55,7 @@ mean(log_loss(ypred, y))
 
 Xmatrix = MLJ.matrix(X)
 # This will raise a warning and subsequenti fit potentially fail
-mach = machine(LogisticClassifier(), Xmatrix, y)
+mach = machine(RandomForestClassifier(), Xmatrix, y)
 
 
 # Now for the Stack
@@ -61,22 +65,20 @@ library = (rf=RandomForestClassifier(),
             knn=KNNClassifier())
 
 stack = Stack(;metalearner=LogisticClassifier(), 
-        resampling=CV(nfolds=2), 
-        library...)
+                resampling=CV(nfolds=2), 
+                library...)
 
-mach = machine(stack, X, y)
-fit!(mach)
-fp = fitted_params(mach)
-
-mean(log_loss(predict(mach), y))
+# TODO: Now fit the stack
 
 ###############################################################################
 # Model Comparison
+# Use the push!(array, new_element) function to extend the results for each model
+# Notice the "!", this isyntax tells you that the first argument will be modified by the function
+
 allmodels = (stack=stack, library...)
 results = []
 for model in allmodels
     res = evaluate(model, X, y, resampling=Holdout(), measure=log_loss, verbosity=0)
-    push!(results, res.measurement[1])
 end
 
 plot([string(x) for x in keys(allmodels)], results, 

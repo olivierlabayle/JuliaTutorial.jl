@@ -30,22 +30,24 @@ end
 
 myaddition(1, 2)
 
-# 4/ Let's do something a bit more fun
+# 4/ Defining a new type and extending our function
 
-# Define a new Type
 struct Cocktail
     ingredients::Tuple
-end
-
-function myaddition(a::Cocktail, b::Cocktail)
-    return (a.ingredients..., b.ingredients...)
 end
 
 sexonthebeach = Cocktail(("vodka", "schnaps", "orange juice", "cranberry juice"))
 tipunch = Cocktail(("rhum", "sugar", "lime juice"))
 
+
+function myaddition(a::Cocktail, b::Cocktail)
+    return ((a.ingredients..., b.ingredients...))
+end
+
+
 olivierssecret = myaddition(sexonthebeach, tipunch)
 
+olivierssecret isa Cocktail
 # Make your great function `myaddition` available to the public
 
 export myaddition
