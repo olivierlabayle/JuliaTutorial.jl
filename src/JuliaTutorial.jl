@@ -8,12 +8,12 @@ Structures are how you can define new types
 struct ModelThatIAmProudOf end
 
 """
-This is your ambitious fitting procedure and should return at least a `fitresult` object.
+This is your ambitious fitting procedure
 """
 function fit(model, X, y) end
 
 """
-This should output ŷ, a prediction for the new X.
+This should probably output ŷ
 """
 function predict(model, fitresult, X) end
 
