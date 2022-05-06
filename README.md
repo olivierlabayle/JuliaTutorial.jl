@@ -32,18 +32,47 @@ Well done you are now a VSCode power user!
 
 The various parts of the tutorial are made available as Git branches:
 
-- Part-1: Discovering
+### Part-1: Discovering
 
 `git checkout --track origin/discovering`
 
-- Part-2: Understanding
+Take home messages:
+- Julia is a high level language
+- You can write functions in mutiple ways
+- The package manager allows you to declare environments and to add/remove dependencies to your project. The `Project.toml` and `Manifest.toml` represent the state of your dependencies.
+    - Getting in and out of the Package Manager: `]` and `<-`
+    - Adding, removing packages: `add/rm PkgName`
+    - Seeing the current status of the Project dependencies: `status`
+
+### Part-2: Understanding
 
 `git checkout --track origin/understanding`
 
-- Part-3: Mastering
+Take home messages:
+- Everything has a type that can be accessed by `typeof()`
+- The type system is a Tree
+- Functions are declared names
+- A function can have multiple methods, ie implementations/logics based on the type they support
+- When called on arguments, a method gets automatically specialized for those arguments which will make it fast
+- You don't want to "overtype" your function's arguments for performance reasons. Julia will specialize your method anyway. Enforcing strict types will just make your code less general.
+- You can (and should) test your project to make sure it does what you intend. A software is a living thing, you may change the internals of a function but the output should remain the same. Automated tests are a safeguard from yourself.
+
+### Part-3: Mastering
 
 `git checkout --track origin/mastering`
 
-## Improving the experience
+Take home messages:
+- Modules are namespaces. Functions defined in those namespaces are only visible through it. It means that from outside the module, you either need to:
+    - Call `MyModule.myf`
+    - `export myf` in the module itself.
+- Packages are the way you want to structure your projects because:
+    - You can automate the testing of your package via the Package Manager
+    - You can distribute them so that they are available to everyone
+## Concluding thoughts
+
+It will take some time to process all the things we have seen today. Mostly, we have only scratched the surface, so here is a few references if you get stuck (and you will) or want to dig deeper: 
+- The [Julia Documentation](https://docs.julialang.org/en/v1/) is a great place to look for more content.
+- [This youtube video](https://www.youtube.com/watch?v=QVmU29rCjaA) will take you more in depth into packages and continuous integration.
+- I am quite happy to help ;-)
 
 If you have any idea to improve the tutorial don't hesitate to let me know and post an issue on the Guthub repository!
