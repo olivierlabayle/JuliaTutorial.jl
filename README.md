@@ -34,16 +34,15 @@ The various parts of the tutorial are made available as Git branches:
 
 - Part-1: Discovering
 
-`git checkout --track origin/part-1`
+`git checkout --track origin/discovering`
 
 - Part-2: Understanding
 
-`git checkout --track origin/part-2`
+`git checkout --track origin/understanding`
 
 - Part-3: Mastering
 
-`git checkout --track origin/part-3`
-
+`git checkout --track origin/mastering`
 
 ## Improving the experience
 
