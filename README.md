@@ -84,4 +84,4 @@ It will take some time to process all the things we have seen today. Mostly, we 
 - [This youtube video](https://www.youtube.com/watch?v=QVmU29rCjaA) will take you more in depth into packages and continuous integration.
 - I am quite happy to help ;-)
 
-If you have any idea to improve the tutorial don't hesitate to let me know and post an issue on the Guthub repository!
+If you have any idea to improve the tutorial don't hesitate to let me know and post an issue on the Github repository!
